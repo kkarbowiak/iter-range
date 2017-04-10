@@ -40,12 +40,23 @@ namespace iter
             counter_type const mStop;
             counter_type const mStep;
     };
-    
-    template<typename C>
-    range_helper<C> range(C stop);
-    
-    template<typename C>
-    range_helper<C> range(C start, C stop, C step = 1);
+}
+
+namespace iter
+{   
+////////////////////////////////////////////////////////////////////////////////
+template<typename C>
+inline range_helper<C> range(C stop)
+{
+    return range_helper<C>(stop);
+}
+////////////////////////////////////////////////////////////////////////////////
+template<typename C>
+inline range_helper<C> range(C start, C stop, C step = 1)
+{
+    return range_helper<C>(start, stop, step);
+}
+////////////////////////////////////////////////////////////////////////////////
 }
 
 
@@ -112,18 +123,6 @@ template<typename C>
 inline typename range_helper<C>::iterator range_helper<C>::end() const
 {
     return iterator(mStop, mStep);
-}
-////////////////////////////////////////////////////////////////////////////////
-template<typename C>
-inline range_helper<C> range(C stop)
-{
-    return range_helper<C>(stop);
-}
-////////////////////////////////////////////////////////////////////////////////
-template<typename C>
-inline range_helper<C> range(C start, C stop, C step)
-{
-    return range_helper<C>(start, stop, step);
 }
 ////////////////////////////////////////////////////////////////////////////////
 }
