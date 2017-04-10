@@ -14,13 +14,28 @@ namespace iter
             class iterator
             {
                 public:
-                    iterator(counter_type value, counter_type step);
+                    iterator(counter_type value, counter_type step)
+                        : mValue(value)
+                        , mStep(step)
+                    {
+                    }
                     
-                    bool operator!=(iterator const & other) const;
+                    bool operator!=(iterator const & other) const
+                    {
+                        return (mValue != other.mValue);
+                    }
                     
-                    counter_type operator*() const;
+                    counter_type operator*() const
+                    {
+                        return mValue;
+                    }
                     
-                    iterator & operator++();
+                    iterator & operator++()
+                    {
+                        mValue += mStep;
+    
+                        return *this;
+                    }
                     
                 private:
                     counter_type mValue;
@@ -79,39 +94,6 @@ template<typename C>
 inline range_helper<C> range(C start, C stop, C step = 1)
 {
     return range_helper<C>(start, stop, step);
-}
-////////////////////////////////////////////////////////////////////////////////
-}
-
-
-namespace iter
-{
-////////////////////////////////////////////////////////////////////////////////
-template<typename C>
-inline range_helper<C>::iterator::iterator(counter_type value, counter_type step)
-    : mValue(value)
-    , mStep(step)
-{
-}
-////////////////////////////////////////////////////////////////////////////////
-template<typename C>
-inline bool range_helper<C>::iterator::operator!=(range_helper<C>::iterator const & other) const
-{
-    return (mValue != other.mValue);
-}
-////////////////////////////////////////////////////////////////////////////////
-template<typename C>
-inline typename range_helper<C>::counter_type range_helper<C>::iterator::operator*() const
-{
-    return mValue;
-}
-////////////////////////////////////////////////////////////////////////////////
-template<typename C>
-inline typename range_helper<C>::iterator & range_helper<C>::iterator::operator++()
-{
-    mValue += mStep;
-    
-    return *this;
 }
 ////////////////////////////////////////////////////////////////////////////////
 }
