@@ -28,12 +28,36 @@ namespace iter
             };
 
         public:
-            range_helper();
-            explicit range_helper(counter_type stop);
-            range_helper(counter_type start, counter_type stop, counter_type step = 1);
+            range_helper()
+                : mStart(0)
+                , mStop(0)
+                , mStep(0)
+            {
+            }
             
-            iterator begin() const;
-            iterator end() const;
+            explicit range_helper(counter_type stop)
+                : mStart(0)
+                , mStop(stop)
+                , mStep(1)
+            {
+            }
+            
+            range_helper(counter_type start, counter_type stop, counter_type step = 1)
+                : mStart(start)
+                , mStop(stop)
+                , mStep(step)
+            {
+            }
+            
+            iterator begin() const
+            {
+                return iterator(mStart, mStep);
+            }
+            
+            iterator end() const
+            {
+                return iterator(mStop, mStep);
+            }
 
         private:
             counter_type const mStart;
@@ -88,42 +112,6 @@ inline typename range_helper<C>::iterator & range_helper<C>::iterator::operator+
     mValue += mStep;
     
     return *this;
-}
-////////////////////////////////////////////////////////////////////////////////
-template<typename C>
-inline range_helper<C>::range_helper()
-    : mStart(0)
-    , mStop(0)
-    , mStep(0)
-{
-}
-////////////////////////////////////////////////////////////////////////////////
-template<typename C>
-inline range_helper<C>::range_helper(counter_type stop)
-    : mStart(0)
-    , mStop(stop)
-    , mStep(1)
-{
-}
-////////////////////////////////////////////////////////////////////////////////
-template<typename C>
-inline range_helper<C>::range_helper(counter_type start, counter_type stop, counter_type step)
-    : mStart(start)
-    , mStop(stop)
-    , mStep(step)
-{
-}
-////////////////////////////////////////////////////////////////////////////////
-template<typename C>
-inline typename range_helper<C>::iterator range_helper<C>::begin() const
-{
-    return iterator(mStart, mStep);
-}
-////////////////////////////////////////////////////////////////////////////////
-template<typename C>
-inline typename range_helper<C>::iterator range_helper<C>::end() const
-{
-    return iterator(mStop, mStep);
 }
 ////////////////////////////////////////////////////////////////////////////////
 }
