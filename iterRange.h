@@ -94,6 +94,7 @@ template<typename C>
 inline range_helper<C>::range_helper()
     : mStart(0)
     , mStop(0)
+    , mStep(0)
 {
 }
 ////////////////////////////////////////////////////////////////////////////////
