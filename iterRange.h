@@ -8,13 +8,10 @@ namespace iter
     class range_helper
     {
         public:
-            typedef C counter_type;
-            
-        public:
             class iterator
             {
                 public:
-                    iterator(counter_type value, counter_type step)
+                    iterator(C value, C step)
                         : mValue(value)
                         , mStep(step)
                     {
@@ -25,7 +22,7 @@ namespace iter
                         return (mValue != other.mValue);
                     }
                     
-                    counter_type operator*() const
+                    C operator*() const
                     {
                         return mValue;
                     }
@@ -38,8 +35,8 @@ namespace iter
                     }
                     
                 private:
-                    counter_type mValue;
-                    counter_type const mStep;
+                    C mValue;
+                    C const mStep;
             };
 
         public:
@@ -50,14 +47,14 @@ namespace iter
             {
             }
             
-            explicit range_helper(counter_type stop)
+            explicit range_helper(C stop)
                 : mStart(0)
                 , mStop(stop)
                 , mStep(1)
             {
             }
             
-            range_helper(counter_type start, counter_type stop, counter_type step = 1)
+            range_helper(C start, C stop, C step = 1)
                 : mStart(start)
                 , mStop(stop)
                 , mStep(step)
@@ -75,9 +72,9 @@ namespace iter
             }
 
         private:
-            counter_type const mStart;
-            counter_type const mStop;
-            counter_type const mStep;
+            C const mStart;
+            C const mStop;
+            C const mStep;
     };
 }
 
