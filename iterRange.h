@@ -4,6 +4,8 @@
 
 namespace iter
 {
+namespace detail
+{
     template<typename C>
     class range_helper
     {
@@ -77,20 +79,21 @@ namespace iter
             C const mStep;
     };
 }
+}
 
 namespace iter
 {   
 ////////////////////////////////////////////////////////////////////////////////
 template<typename C>
-inline range_helper<C> range(C stop)
+inline detail::range_helper<C> range(C stop)
 {
-    return range_helper<C>(stop);
+    return detail::range_helper<C>(stop);
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename C>
-inline range_helper<C> range(C start, C stop, C step = 1)
+inline detail::range_helper<C> range(C start, C stop, C step = 1)
 {
-    return range_helper<C>(start, stop, step);
+    return detail::range_helper<C>(start, stop, step);
 }
 ////////////////////////////////////////////////////////////////////////////////
 }
