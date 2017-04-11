@@ -7,7 +7,7 @@ namespace iter
 namespace detail
 {
     template<typename C>
-    class range_helper
+    class ranger
     {
         public:
             class iterator
@@ -42,21 +42,21 @@ namespace detail
             };
 
         public:
-            range_helper()
+            ranger()
                 : mStart(0)
                 , mStop(0)
                 , mStep(0)
             {
             }
             
-            explicit range_helper(C stop)
+            explicit ranger(C stop)
                 : mStart(0)
                 , mStop(stop)
                 , mStep(1)
             {
             }
             
-            range_helper(C start, C stop, C step = 1)
+            ranger(C start, C stop, C step = 1)
                 : mStart(start)
                 , mStop(stop)
                 , mStep(step)
@@ -85,15 +85,15 @@ namespace iter
 {   
 ////////////////////////////////////////////////////////////////////////////////
 template<typename C>
-inline detail::range_helper<C> range(C stop)
+inline detail::ranger<C> range(C stop)
 {
-    return detail::range_helper<C>(stop);
+    return detail::ranger<C>(stop);
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename C>
-inline detail::range_helper<C> range(C start, C stop, C step = 1)
+inline detail::ranger<C> range(C start, C stop, C step = 1)
 {
-    return detail::range_helper<C>(start, stop, step);
+    return detail::ranger<C>(start, stop, step);
 }
 ////////////////////////////////////////////////////////////////////////////////
 }
