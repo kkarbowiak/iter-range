@@ -7,39 +7,42 @@ namespace iter
 namespace detail
 {
     template<typename C>
+    class itr
+    {
+        public:
+            itr(C value, C step)
+                : mValue(value)
+                , mStep(step)
+            {
+            }
+            
+            bool operator!=(itr const & other) const
+            {
+                return (mValue != other.mValue);
+            }
+            
+            C operator*() const
+            {
+                return mValue;
+            }
+            
+            itr & operator++()
+            {
+                mValue += mStep;
+
+                return *this;
+            }
+            
+        private:
+            C mValue;
+            C const mStep;
+    };
+            
+    template<typename C>
     class ranger
     {
         public:
-            class iterator
-            {
-                public:
-                    iterator(C value, C step)
-                        : mValue(value)
-                        , mStep(step)
-                    {
-                    }
-                    
-                    bool operator!=(iterator const & other) const
-                    {
-                        return (mValue != other.mValue);
-                    }
-                    
-                    C operator*() const
-                    {
-                        return mValue;
-                    }
-                    
-                    iterator & operator++()
-                    {
-                        mValue += mStep;
-    
-                        return *this;
-                    }
-                    
-                private:
-                    C mValue;
-                    C const mStep;
-            };
+            using iterator = itr<C>;
 
         public:
             ranger()
