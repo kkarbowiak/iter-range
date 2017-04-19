@@ -10,8 +10,9 @@ namespace detail
     class itr
     {
         public:
-            itr(C value, C step)
-                : mValue(value)
+            itr(C start, C stop, C step)
+                : mValue(start)
+                , mStop(stop)
                 , mStep(step)
             {
             }
@@ -28,13 +29,16 @@ namespace detail
             
             itr & operator++()
             {
-                mValue += mStep;
+                mValue = (mStop + mStep >= mStop)
+                    ? std::min(mValue + mStep, mStop)
+                    : std::max(mValue + mStep, mStop);
 
                 return *this;
             }
             
         private:
             C mValue;
+            C const mStop;
             C const mStep;
     };
             
@@ -68,12 +72,12 @@ namespace detail
             
             iterator begin() const
             {
-                return iterator(mStart, mStep);
+                return iterator(mStart, mStop, mStep);
             }
             
             iterator end() const
             {
-                return iterator(mStop, mStep);
+                return iterator(mStop, mStop, mStep);
             }
 
         private:
