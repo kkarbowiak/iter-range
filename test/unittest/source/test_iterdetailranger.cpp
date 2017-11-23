@@ -3,6 +3,7 @@
 #include "iterRange.h"
 
 #include "numelems.h"
+#include "sizetliteral.h"
 
 #include <cstddef>
 
@@ -117,7 +118,7 @@ TEST_CASE("ctor start stop step", "[iter][detail][ranger][ctor][start][stop][ste
             std::size_t const stop = -23;
             std::size_t const step = -2;
             iter::detail::ranger<std::size_t> ran(start, stop, step);
-            std::size_t const values[] = {-7, -9, -11, -13, -15, -17, -19, -21};
+            std::size_t const values[] = {-7_z, -9_z, -11_z, -13_z, -15_z, -17_z, -19_z, -21_z};
             std::size_t i = 0;
 
             for (auto i0 : ran)
