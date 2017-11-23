@@ -1,6 +1,8 @@
 #ifndef ITER_RANGE_H__DDK
 #define ITER_RANGE_H__DDK
 
+#include <algorithm>
+
 
 namespace iter
 {
