@@ -1,3 +1,7 @@
+/*
+    Copyright 2017 Krzysztof Karbowiak
+*/
+
 #ifndef ITER_RANGE_H__DDK
 #define ITER_RANGE_H__DDK
 
