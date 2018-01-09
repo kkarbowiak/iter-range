@@ -26,17 +26,17 @@ namespace detail
                     {
                     }
 
-                    bool operator!=(iterator const & other) const
+                    auto operator!=(iterator const & other) const -> bool
                     {
                         return (mValue != other.mValue);
                     }
 
-                    C operator*() const
+                    auto operator*() const -> C
                     {
                         return mValue;
                     }
 
-                    iterator & operator++()
+                    auto operator++() -> iterator &
                     {
                         mValue = (mStop + mStep >= mStop)
                             ? std::min(static_cast<C>(mValue + mStep), mStop)
@@ -73,12 +73,12 @@ namespace detail
             {
             }
 
-            iterator begin() const
+            auto begin() const -> iterator
             {
                 return iterator(mStart, mStop, mStep);
             }
 
-            iterator end() const
+            auto end() const -> iterator
             {
                 return iterator(mStop, mStop, mStep);
             }
@@ -95,13 +95,13 @@ namespace iter
 {   
 ////////////////////////////////////////////////////////////////////////////////
 template<typename C>
-inline detail::ranger<C> range(C stop)
+inline auto range(C stop) -> detail::ranger<C>
 {
     return detail::ranger<C>(stop);
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename C>
-inline detail::ranger<C> range(C start, C stop, C step = 1)
+inline auto range(C start, C stop, C step = 1) -> detail::ranger<C>
 {
     return detail::ranger<C>(start, stop, step);
 }
