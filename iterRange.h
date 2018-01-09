@@ -22,17 +22,17 @@ namespace detail
                 , mStep(step)
             {
             }
-            
+
             bool operator!=(itr const & other) const
             {
                 return (mValue != other.mValue);
             }
-            
+
             C operator*() const
             {
                 return mValue;
             }
-            
+
             itr & operator++()
             {
                 mValue = (mStop + mStep >= mStop)
@@ -41,13 +41,13 @@ namespace detail
 
                 return *this;
             }
-            
+
         private:
             C mValue;
             C const mStop;
             C const mStep;
     };
-            
+
     template<typename C>
     class ranger
     {
@@ -61,26 +61,26 @@ namespace detail
                 , mStep(0)
             {
             }
-            
+
             explicit ranger(C stop)
                 : mStart(0)
                 , mStop(stop)
                 , mStep(1)
             {
             }
-            
+
             ranger(C start, C stop, C step = 1)
                 : mStart(start)
                 , mStop(stop)
                 , mStep(step)
             {
             }
-            
+
             iterator begin() const
             {
                 return iterator(mStart, mStop, mStep);
             }
-            
+
             iterator end() const
             {
                 return iterator(mStop, mStop, mStep);
