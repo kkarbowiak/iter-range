@@ -36,8 +36,8 @@ namespace detail
             itr & operator++()
             {
                 mValue = (mStop + mStep >= mStop)
-                    ? std::min(mValue + mStep, mStop)
-                    : std::max(mValue + mStep, mStop);
+                    ? std::min(static_cast<C>(mValue + mStep), mStop)
+                    : std::max(static_cast<C>(mValue + mStep), mStop);
 
                 return *this;
             }

@@ -127,4 +127,21 @@ TEST_CASE("oper++", "[iter][detail][itr][oper++]")
         REQUIRE(*++it12 == start1 + step2);
         REQUIRE(*++it13 == start1 + step3);
     }
+
+    SECTION("char")
+    {
+        char const start1 = 'j';
+        char const stop1 = 'o';
+        char const stop2 = -5;
+        char const step1 = 0;
+        char const step2 = 1;
+        char const step3 = -1;
+        iter::detail::itr<char> it11(start1, stop1, step1);
+        iter::detail::itr<char> it12(start1, stop1, step2);
+        iter::detail::itr<char> it13(start1, stop2, step3);
+
+        REQUIRE(*++it11 == start1 + step1);
+        REQUIRE(*++it12 == start1 + step2);
+        REQUIRE(*++it13 == start1 + step3);
+    }
 }
