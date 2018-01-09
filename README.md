@@ -24,7 +24,7 @@ for (int i : iter::range(10))
 There are two overloads. First takes single `stop` parameter and allows iteration in range [0, stop). The second overload takes three parameters: `start`, `stop`, and `step`. The default value for `step` is 1.
 
 ```
-#include "iterRange.h"
+#include "iter_range.h"
 #include <iostream>
 
 int main()
