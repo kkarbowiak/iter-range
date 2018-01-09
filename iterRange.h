@@ -13,46 +13,43 @@ namespace iter
 namespace detail
 {
     template<typename C>
-    class itr
-    {
-        public:
-            itr(C start, C stop, C step)
-                : mValue(start)
-                , mStop(stop)
-                , mStep(step)
-            {
-            }
-
-            bool operator!=(itr const & other) const
-            {
-                return (mValue != other.mValue);
-            }
-
-            C operator*() const
-            {
-                return mValue;
-            }
-
-            itr & operator++()
-            {
-                mValue = (mStop + mStep >= mStop)
-                    ? std::min(static_cast<C>(mValue + mStep), mStop)
-                    : std::max(static_cast<C>(mValue + mStep), mStop);
-
-                return *this;
-            }
-
-        private:
-            C mValue;
-            C const mStop;
-            C const mStep;
-    };
-
-    template<typename C>
     class ranger
     {
         public:
-            using iterator = itr<C>;
+            class iterator
+            {
+                public:
+                    iterator(C start, C stop, C step)
+                        : mValue(start)
+                        , mStop(stop)
+                        , mStep(step)
+                    {
+                    }
+
+                    bool operator!=(iterator const & other) const
+                    {
+                        return (mValue != other.mValue);
+                    }
+
+                    C operator*() const
+                    {
+                        return mValue;
+                    }
+
+                    iterator & operator++()
+                    {
+                        mValue = (mStop + mStep >= mStop)
+                            ? std::min(static_cast<C>(mValue + mStep), mStop)
+                            : std::max(static_cast<C>(mValue + mStep), mStop);
+
+                        return *this;
+                    }
+
+                private:
+                    C mValue;
+                    C const mStop;
+                    C const mStep;
+            };
 
         public:
             ranger()

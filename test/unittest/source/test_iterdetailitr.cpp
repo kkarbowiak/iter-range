@@ -5,14 +5,14 @@
 #include <cstddef>
 
 
-TEST_CASE("ctor", "[iter][detail][itr][ctor]")
+TEST_CASE("ctor", "[iter][detail][iterator][ctor]")
 {
     SECTION("int")
     {
         int const start = 3;
         int const stop = 5;
         int const step = 1;
-        iter::detail::itr<int> it(start, stop, step);
+        iter::detail::ranger<int>::iterator it(start, stop, step);
         
         REQUIRE(*it == start);
     }
@@ -22,13 +22,13 @@ TEST_CASE("ctor", "[iter][detail][itr][ctor]")
         std::size_t const start = 3;
         std::size_t const stop = 5;
         std::size_t const step = 1;
-        iter::detail::itr<std::size_t> it(start, stop, step);
+        iter::detail::ranger<std::size_t>::iterator it(start, stop, step);
 
         REQUIRE(*it == start);
     }
 }
 
-TEST_CASE("neq", "[iter][detail][itr][neq]")
+TEST_CASE("neq", "[iter][detail][iterator][neq]")
 {
     SECTION("int")
     {
@@ -37,11 +37,11 @@ TEST_CASE("neq", "[iter][detail][itr][neq]")
         int const stop1 = 9;
         int const step1 = 1;
         int const step2 = 2;
-        iter::detail::itr<int> it11a(start1, stop1, step1);
-        iter::detail::itr<int> it11b(start1, stop1, step1);
-        iter::detail::itr<int> it12(start1, stop1, step2);
-        iter::detail::itr<int> it21(start2, stop1, step1);
-        iter::detail::itr<int> it22(start2, stop1, step2);
+        iter::detail::ranger<int>::iterator it11a(start1, stop1, step1);
+        iter::detail::ranger<int>::iterator it11b(start1, stop1, step1);
+        iter::detail::ranger<int>::iterator it12(start1, stop1, step2);
+        iter::detail::ranger<int>::iterator it21(start2, stop1, step1);
+        iter::detail::ranger<int>::iterator it22(start2, stop1, step2);
 
         REQUIRE(!(it11a != it11b));
         REQUIRE(!(it11a != it12));
@@ -56,11 +56,11 @@ TEST_CASE("neq", "[iter][detail][itr][neq]")
         std::size_t const stop1 = 9;
         std::size_t const step1 = 1;
         std::size_t const step2 = 2;
-        iter::detail::itr<std::size_t> it11a(start1, stop1, step1);
-        iter::detail::itr<std::size_t> it11b(start1, stop1, step1);
-        iter::detail::itr<std::size_t> it12(start1, stop1, step2);
-        iter::detail::itr<std::size_t> it21(start2, stop1, step1);
-        iter::detail::itr<std::size_t> it22(start2, stop1, step2);
+        iter::detail::ranger<std::size_t>::iterator it11a(start1, stop1, step1);
+        iter::detail::ranger<std::size_t>::iterator it11b(start1, stop1, step1);
+        iter::detail::ranger<std::size_t>::iterator it12(start1, stop1, step2);
+        iter::detail::ranger<std::size_t>::iterator it21(start2, stop1, step1);
+        iter::detail::ranger<std::size_t>::iterator it22(start2, stop1, step2);
 
         REQUIRE(!(it11a != it11b));
         REQUIRE(!(it11a != it12));
@@ -69,14 +69,14 @@ TEST_CASE("neq", "[iter][detail][itr][neq]")
     }
 }
 
-TEST_CASE("deref", "[iter][detail][itr][deref]")
+TEST_CASE("deref", "[iter][detail][iterator][deref]")
 {
     SECTION("int")
     {
         int const start = 3;
         int const stop = 5;
         int const step = 1;
-        iter::detail::itr<int> it(start, stop, step);
+        iter::detail::ranger<int>::iterator it(start, stop, step);
 
         REQUIRE(*it == start);
     }
@@ -86,13 +86,13 @@ TEST_CASE("deref", "[iter][detail][itr][deref]")
         std::size_t const start = 3;
         std::size_t const stop = 5;
         std::size_t const step = 1;
-        iter::detail::itr<std::size_t> it(start, stop, step);
+        iter::detail::ranger<std::size_t>::iterator it(start, stop, step);
 
         REQUIRE(*it == start);
     }
 }
 
-TEST_CASE("oper++", "[iter][detail][itr][oper++]")
+TEST_CASE("oper++", "[iter][detail][iterator][oper++]")
 {
     SECTION("int")
     {
@@ -102,9 +102,9 @@ TEST_CASE("oper++", "[iter][detail][itr][oper++]")
         int const step1 = 0;
         int const step2 = 1;
         int const step3 = -1;
-        iter::detail::itr<int> it11(start1, stop1, step1);
-        iter::detail::itr<int> it12(start1, stop1, step2);
-        iter::detail::itr<int> it13(start1, stop2, step3);
+        iter::detail::ranger<int>::iterator it11(start1, stop1, step1);
+        iter::detail::ranger<int>::iterator it12(start1, stop1, step2);
+        iter::detail::ranger<int>::iterator it13(start1, stop2, step3);
 
         REQUIRE(*++it11 == start1 + step1);
         REQUIRE(*++it12 == start1 + step2);
@@ -119,9 +119,9 @@ TEST_CASE("oper++", "[iter][detail][itr][oper++]")
         std::size_t const step1 = 0;
         std::size_t const step2 = 1;
         std::size_t const step3 = -1;
-        iter::detail::itr<std::size_t> it11(start1, stop1, step1);
-        iter::detail::itr<std::size_t> it12(start1, stop1, step2);
-        iter::detail::itr<std::size_t> it13(start1, stop2, step3);
+        iter::detail::ranger<std::size_t>::iterator it11(start1, stop1, step1);
+        iter::detail::ranger<std::size_t>::iterator it12(start1, stop1, step2);
+        iter::detail::ranger<std::size_t>::iterator it13(start1, stop2, step3);
 
         REQUIRE(*++it11 == start1 + step1);
         REQUIRE(*++it12 == start1 + step2);
@@ -136,9 +136,9 @@ TEST_CASE("oper++", "[iter][detail][itr][oper++]")
         char const step1 = 0;
         char const step2 = 1;
         char const step3 = -1;
-        iter::detail::itr<char> it11(start1, stop1, step1);
-        iter::detail::itr<char> it12(start1, stop1, step2);
-        iter::detail::itr<char> it13(start1, stop2, step3);
+        iter::detail::ranger<char>::iterator it11(start1, stop1, step1);
+        iter::detail::ranger<char>::iterator it12(start1, stop1, step2);
+        iter::detail::ranger<char>::iterator it13(start1, stop2, step3);
 
         REQUIRE(*++it11 == start1 + step1);
         REQUIRE(*++it12 == start1 + step2);
