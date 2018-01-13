@@ -52,7 +52,7 @@ namespace detail
             };
 
         public:
-            ranger(C start, C stop, C step = 1)
+            ranger(C start, C stop, C step)
                 : mStart(start)
                 , mStop(stop)
                 , mStep(step)
@@ -81,15 +81,15 @@ namespace iter
 {   
 ////////////////////////////////////////////////////////////////////////////////
 template<typename C>
-inline auto range(C stop) -> detail::ranger<C>
-{
-    return detail::ranger<C>(0, stop);
-}
-////////////////////////////////////////////////////////////////////////////////
-template<typename C>
 inline auto range(C start, C stop, C step = 1) -> detail::ranger<C>
 {
     return detail::ranger<C>(start, stop, step);
+}
+////////////////////////////////////////////////////////////////////////////////
+template<typename C>
+inline auto range(C stop) -> detail::ranger<C>
+{
+    return range(static_cast<C>(0), stop);
 }
 ////////////////////////////////////////////////////////////////////////////////
 }
