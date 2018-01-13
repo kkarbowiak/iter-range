@@ -52,13 +52,6 @@ namespace detail
             };
 
         public:
-            explicit ranger(C stop)
-                : mStart(0)
-                , mStop(stop)
-                , mStep(1)
-            {
-            }
-
             ranger(C start, C stop, C step = 1)
                 : mStart(start)
                 , mStop(stop)
@@ -90,7 +83,7 @@ namespace iter
 template<typename C>
 inline auto range(C stop) -> detail::ranger<C>
 {
-    return detail::ranger<C>(stop);
+    return detail::ranger<C>(0, stop);
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename C>
