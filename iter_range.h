@@ -52,13 +52,6 @@ namespace detail
             };
 
         public:
-            ranger()
-                : mStart(0)
-                , mStop(0)
-                , mStep(0)
-            {
-            }
-
             explicit ranger(C stop)
                 : mStart(0)
                 , mStop(stop)
