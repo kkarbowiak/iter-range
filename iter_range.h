@@ -80,10 +80,16 @@ namespace detail
 namespace iter
 {   
 ////////////////////////////////////////////////////////////////////////////////
-template<typename C>
-inline auto range(C start, C stop, C step = 1) -> detail::ranger<C>
+template<typename C, typename C1>
+inline auto range(C start, C stop, C1 step) -> detail::ranger<C>
 {
     return detail::ranger<C>(start, stop, step);
+}
+////////////////////////////////////////////////////////////////////////////////
+template<typename C>
+inline auto range(C start, C stop) -> detail::ranger<C>
+{
+    return range(start, stop, static_cast<C>(1));
 }
 ////////////////////////////////////////////////////////////////////////////////
 template<typename C>
