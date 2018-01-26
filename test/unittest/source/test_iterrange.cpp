@@ -16,6 +16,13 @@ TEST_CASE("range", "[iter][range]")
         {
             SECTION("empty")
             {
+                SECTION("char")
+                {
+                    auto r = iter::range('\0');
+
+                    REQUIRE(!(r.begin() != r.end()));
+                }
+
                 SECTION("int")
                 {
                     auto r = iter::range(0);
@@ -33,6 +40,21 @@ TEST_CASE("range", "[iter][range]")
 
             SECTION("non-empty")
             {
+                SECTION("char")
+                {
+                    char const values[] = {0, 1, 2, 3, 4};
+                    std::size_t i = 0;
+
+                    auto r = iter::range(5);
+
+                    for (auto i0 : r)
+                    {
+                        REQUIRE(i0 == values[i++]);
+                    }
+
+                    REQUIRE(i == num_elems(values));
+                }
+
                 SECTION("int")
                 {
                     int const values[] = {0, 1, 2, 3, 4};
@@ -69,6 +91,13 @@ TEST_CASE("range", "[iter][range]")
         {
             SECTION("empty")
             {
+                SECTION("char")
+                {
+                    auto r = iter::range('\0', '\0');
+
+                    REQUIRE(!(r.begin() != r.end()));
+                }
+
                 SECTION("int")
                 {
                     auto r = iter::range(0, 0);
@@ -86,6 +115,19 @@ TEST_CASE("range", "[iter][range]")
 
             SECTION("non-empty")
             {
+                SECTION("char")
+                {
+                    char const values[] = {'a', 'b', 'c', 'd', 'e'};
+                    std::size_t i = 0;
+
+                    for (auto i0 : iter::range('a', 'f'))
+                    {
+                        REQUIRE(i0 == values[i++]);
+                    }
+
+                    REQUIRE(i == num_elems(values));
+                }
+
                 SECTION("int")
                 {
                     int const values[] = {3, 4, 5, 6, 7};
@@ -118,6 +160,13 @@ TEST_CASE("range", "[iter][range]")
         {
             SECTION("empty")
             {
+                SECTION("char")
+                {
+                    auto r = iter::range('\0', '\0', char(3));
+
+                    REQUIRE(!(r.begin() != r.end()));
+                }
+
                 SECTION("int")
                 {
                     auto r = iter::range(0, 0, 3);
@@ -135,6 +184,19 @@ TEST_CASE("range", "[iter][range]")
 
             SECTION("forward")
             {
+                SECTION("char")
+                {
+                    char const values[] = {'a', 'd', 'g', 'j'};
+                    std::size_t i = 0;
+
+                    for (auto i0 : iter::range('a', 'm', char(3)))
+                    {
+                        REQUIRE(i0 == values[i++]);
+                    }
+
+                    REQUIRE(i == num_elems(values));
+                }
+
                 SECTION("int")
                 {
                     int const values[] = {2, 5, 8, 11};
@@ -164,6 +226,19 @@ TEST_CASE("range", "[iter][range]")
 
             SECTION("backward")
             {
+                SECTION("char")
+                {
+                    char const values[] = {'x', 'v', 't', 'r', 'p', 'n', 'l', 'j', 'h'};
+                    std::size_t i = 0;
+
+                    for (auto i0 : iter::range('x', 'f', char(-2)))
+                    {
+                        REQUIRE(i0 == values[i++]);
+                    }
+                    
+                    REQUIRE(i == num_elems(values));
+                }
+
                 SECTION("int")
                 {
                     int const values[] = {-7, -9, -11, -13, -15, -17, -19, -21};
