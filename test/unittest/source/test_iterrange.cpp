@@ -162,7 +162,7 @@ TEST_CASE("range", "[iter][range]")
             {
                 SECTION("char")
                 {
-                    auto r = iter::range('\0', '\0', char(3));
+                    auto r = iter::range('\0', '\0', 3);
 
                     REQUIRE(!(r.begin() != r.end()));
                 }
@@ -189,7 +189,7 @@ TEST_CASE("range", "[iter][range]")
                     char const values[] = {'a', 'd', 'g', 'j'};
                     std::size_t i = 0;
 
-                    for (auto i0 : iter::range('a', 'm', char(3)))
+                    for (auto i0 : iter::range('a', 'm', 3))
                     {
                         REQUIRE(i0 == values[i++]);
                     }
@@ -231,7 +231,7 @@ TEST_CASE("range", "[iter][range]")
                     char const values[] = {'x', 'v', 't', 'r', 'p', 'n', 'l', 'j', 'h'};
                     std::size_t i = 0;
 
-                    for (auto i0 : iter::range('x', 'f', char(-2)))
+                    for (auto i0 : iter::range('x', 'f', -2))
                     {
                         REQUIRE(i0 == values[i++]);
                     }
